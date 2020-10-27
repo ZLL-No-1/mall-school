@@ -1,6 +1,6 @@
 package com.xmall.campusmarket.security.component;
 
-import com.macro.mall.tiny.security.config.IgnoreUrlsConfig;
+import com.xmall.campusmarket.security.config.IgnoreUrlsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.SecurityMetadataSource;

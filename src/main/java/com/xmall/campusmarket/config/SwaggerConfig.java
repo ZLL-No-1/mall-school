@@ -1,7 +1,7 @@
 package com.xmall.campusmarket.config;
 
-import com.macro.mall.tiny.common.config.BaseSwaggerConfig;
-import com.macro.mall.tiny.common.domain.SwaggerProperties;
+import com.xmall.campusmarket.common.config.BaseSwaggerConfig;
+import com.xmall.campusmarket.common.domain.SwaggerProperties;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
