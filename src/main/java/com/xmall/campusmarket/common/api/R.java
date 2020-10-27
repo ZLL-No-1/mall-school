@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:通用返回对象
+ * Description: 通用返回对象
  *
  * @author: zl
  * @date: 2020-10-26

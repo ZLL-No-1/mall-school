@@ -2,7 +2,7 @@ package com.xmall.campusmarket.common.api;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:枚举了一些常用API操作码
+ * Description: 枚举了一些常用API操作码
  *
  * @author: zl
  * @date: 2020-10-26
