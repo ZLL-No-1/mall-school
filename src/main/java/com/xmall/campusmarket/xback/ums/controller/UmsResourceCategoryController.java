@@ -1,8 +1,9 @@
 package com.xmall.campusmarket.xback.ums.controller;
 
-import com.macro.mall.tiny.common.api.CommonResult;
-import com.macro.mall.tiny.modules.ums.model.UmsResourceCategory;
-import com.macro.mall.tiny.modules.ums.service.UmsResourceCategoryService;
+
+import com.xmall.campusmarket.common.api.R;
+import com.xmall.campusmarket.xback.ums.model.UmsResourceCategory;
+import com.xmall.campusmarket.xback.ums.service.UmsResourceCategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,46 +26,46 @@ public class UmsResourceCategoryController {
     @ApiOperation("查询所有后台资源分类")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsResourceCategory>> listAll() {
+    public R<List<UmsResourceCategory>> listAll() {
         List<UmsResourceCategory> resourceList = resourceCategoryService.listAll();
-        return CommonResult.success(resourceList);
+        return R.success(resourceList);
     }
 
     @ApiOperation("添加后台资源分类")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult create(@RequestBody UmsResourceCategory umsResourceCategory) {
+    public R create(@RequestBody UmsResourceCategory umsResourceCategory) {
         boolean success = resourceCategoryService.create(umsResourceCategory);
         if (success) {
-            return CommonResult.success(null);
+            return R.success(null);
         } else {
-            return CommonResult.failed();
+            return R.failed();
         }
     }
 
     @ApiOperation("修改后台资源分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id,
+    public R update(@PathVariable Long id,
                                @RequestBody UmsResourceCategory umsResourceCategory) {
         umsResourceCategory.setId(id);
         boolean success = resourceCategoryService.updateById(umsResourceCategory);
         if (success) {
-            return CommonResult.success(null);
+            return R.success(null);
         } else {
-            return CommonResult.failed();
+            return R.failed();
         }
     }
 
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public R delete(@PathVariable Long id) {
         boolean success = resourceCategoryService.removeById(id);
         if (success) {
-            return CommonResult.success(null);
+            return R.success(null);
         } else {
-            return CommonResult.failed();
+            return R.failed();
         }
     }
 }
