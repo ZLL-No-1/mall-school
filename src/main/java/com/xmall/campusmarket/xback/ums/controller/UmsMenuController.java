@@ -3,7 +3,7 @@ package com.xmall.campusmarket.xback.ums.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xmall.campusmarket.common.api.CommonPage;
-import com.xmall.campusmarket.common.api.R;
+import com.xmall.campusmarket.common.api.ResponseEntity;
 import com.xmall.campusmarket.xback.ums.dto.UmsMenuNode;
 import com.xmall.campusmarket.xback.ums.model.UmsMenu;
 import com.xmall.campusmarket.xback.ums.service.UmsMenuService;
@@ -30,75 +30,75 @@ public class UmsMenuController {
     @ApiOperation("添加后台菜单")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public R create(@RequestBody UmsMenu umsMenu) {
+    public ResponseEntity create(@RequestBody UmsMenu umsMenu) {
         boolean success = menuService.create(umsMenu);
         if (success) {
-            return R.success(null);
+            return ResponseEntity.success(null);
         } else {
-            return R.failed();
+            return ResponseEntity.failed();
         }
     }
 
     @ApiOperation("修改后台菜单")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public R update(@PathVariable Long id,
-                               @RequestBody UmsMenu umsMenu) {
+    public ResponseEntity update(@PathVariable Long id,
+                                 @RequestBody UmsMenu umsMenu) {
         boolean success = menuService.update(id, umsMenu);
         if (success) {
-            return R.success(null);
+            return ResponseEntity.success(null);
         } else {
-            return R.failed();
+            return ResponseEntity.failed();
         }
     }
 
     @ApiOperation("根据ID获取菜单详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public R<UmsMenu> getItem(@PathVariable Long id) {
+    public ResponseEntity<UmsMenu> getItem(@PathVariable Long id) {
         UmsMenu umsMenu = menuService.getById(id);
-        return R.success(umsMenu);
+        return ResponseEntity.success(umsMenu);
     }
 
     @ApiOperation("根据ID删除后台菜单")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public R delete(@PathVariable Long id) {
+    public ResponseEntity delete(@PathVariable Long id) {
         boolean success = menuService.removeById(id);
         if (success) {
-            return R.success(null);
+            return ResponseEntity.success(null);
         } else {
-            return R.failed();
+            return ResponseEntity.failed();
         }
     }
 
     @ApiOperation("分页查询后台菜单")
     @RequestMapping(value = "/list/{parentId}", method = RequestMethod.GET)
     @ResponseBody
-    public R<CommonPage<UmsMenu>> list(@PathVariable Long parentId,
-                                                  @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                                  @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+    public ResponseEntity<CommonPage<UmsMenu>> list(@PathVariable Long parentId,
+                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         Page<UmsMenu> menuList = menuService.list(parentId, pageSize, pageNum);
-        return R.success(CommonPage.restPage(menuList));
+        return ResponseEntity.success(CommonPage.restPage(menuList));
     }
 
     @ApiOperation("树形结构返回所有菜单列表")
     @RequestMapping(value = "/treeList", method = RequestMethod.GET)
     @ResponseBody
-    public R<List<UmsMenuNode>> treeList() {
+    public ResponseEntity<List<UmsMenuNode>> treeList() {
         List<UmsMenuNode> list = menuService.treeList();
-        return R.success(list);
+        return ResponseEntity.success(list);
     }
 
     @ApiOperation("修改菜单显示状态")
     @RequestMapping(value = "/updateHidden/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public R updateHidden(@PathVariable Long id, @RequestParam("hidden") Integer hidden) {
+    public ResponseEntity updateHidden(@PathVariable Long id, @RequestParam("hidden") Integer hidden) {
         boolean success = menuService.updateHidden(id, hidden);
         if (success) {
-            return R.success(null);
+            return ResponseEntity.success(null);
         } else {
-            return R.failed();
+            return ResponseEntity.failed();
         }
     }
 }

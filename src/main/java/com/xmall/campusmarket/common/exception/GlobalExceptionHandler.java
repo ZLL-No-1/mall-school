@@ -1,6 +1,6 @@
 package com.xmall.campusmarket.common.exception;
 
-import com.xmall.campusmarket.common.api.R;
+import com.xmall.campusmarket.common.api.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -21,16 +21,16 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(value = ApiException.class)
-    public R handle(ApiException e) {
+    public ResponseEntity handle(ApiException e) {
         if (e.getErrorCode() != null) {
-            return R.failed(e.getErrorCode());
+            return ResponseEntity.failed(e.getErrorCode());
         }
-        return R.failed(e.getMessage());
+        return ResponseEntity.failed(e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public R handleValidException(MethodArgumentNotValidException e) {
+    public ResponseEntity handleValidException(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
         String message = null;
         if (bindingResult.hasErrors()) {
@@ -39,12 +39,12 @@ public class GlobalExceptionHandler {
                 message = fieldError.getField()+fieldError.getDefaultMessage();
             }
         }
-        return R.validateFailed(message);
+        return ResponseEntity.validateFailed(message);
     }
 
     @ResponseBody
     @ExceptionHandler(value = BindException.class)
-    public R handleValidException(BindException e) {
+    public ResponseEntity handleValidException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         String message = null;
         if (bindingResult.hasErrors()) {
@@ -53,6 +53,6 @@ public class GlobalExceptionHandler {
                 message = fieldError.getField()+fieldError.getDefaultMessage();
             }
         }
-        return R.validateFailed(message);
+        return ResponseEntity.validateFailed(message);
     }
 }

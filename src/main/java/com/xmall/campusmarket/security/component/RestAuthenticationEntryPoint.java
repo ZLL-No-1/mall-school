@@ -1,7 +1,7 @@
 package com.xmall.campusmarket.security.component;
 
 import cn.hutool.json.JSONUtil;
-import com.xmall.campusmarket.common.api.R;
+import com.xmall.campusmarket.common.api.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -21,7 +21,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setHeader("Cache-Control","no-cache");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter().println(JSONUtil.parse(R.unauthorized(authException.getMessage())));
+        response.getWriter().println(JSONUtil.parse(ResponseEntity.unauthorized(authException.getMessage())));
         response.getWriter().flush();
     }
 }

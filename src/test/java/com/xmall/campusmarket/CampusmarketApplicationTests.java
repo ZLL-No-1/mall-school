@@ -1,9 +1,9 @@
 package com.xmall.campusmarket;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootTest
+@SpringBootApplication
 class CampusmarketApplicationTests {
 
     @Test

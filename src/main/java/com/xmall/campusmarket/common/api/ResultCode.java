@@ -7,7 +7,7 @@ package com.xmall.campusmarket.common.api;
  * @author: zl
  * @date: 2020-10-26
  */
-public enum ResultCode implements IErrorCode{
+public enum ResultCode implements ErrorCode {
 
     SUCCESS(200, "操作成功"),
     FAILED(500, "操作失败"),

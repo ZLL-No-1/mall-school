@@ -3,7 +3,7 @@ package com.xmall.campusmarket.xback.ums.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xmall.campusmarket.common.api.CommonPage;
-import com.xmall.campusmarket.common.api.R;
+import com.xmall.campusmarket.common.api.ResponseEntity;
 import com.xmall.campusmarket.security.component.DynamicSecurityMetadataSource;
 import com.xmall.campusmarket.xback.ums.model.UmsResource;
 import com.xmall.campusmarket.xback.ums.service.UmsResourceService;
@@ -32,68 +32,68 @@ public class UmsResourceController {
     @ApiOperation("添加后台资源")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public R create(@RequestBody UmsResource umsResource) {
+    public ResponseEntity create(@RequestBody UmsResource umsResource) {
         boolean success = resourceService.create(umsResource);
         dynamicSecurityMetadataSource.clearDataSource();
         if (success) {
-            return R.success(null);
+            return ResponseEntity.success(null);
         } else {
-            return R.failed();
+            return ResponseEntity.failed();
         }
     }
 
     @ApiOperation("修改后台资源")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public R update(@PathVariable Long id,
-                               @RequestBody UmsResource umsResource) {
+    public ResponseEntity update(@PathVariable Long id,
+                                 @RequestBody UmsResource umsResource) {
         boolean success = resourceService.update(id, umsResource);
         dynamicSecurityMetadataSource.clearDataSource();
         if (success) {
-            return R.success(null);
+            return ResponseEntity.success(null);
         } else {
-            return R.failed();
+            return ResponseEntity.failed();
         }
     }
 
     @ApiOperation("根据ID获取资源详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public R<UmsResource> getItem(@PathVariable Long id) {
+    public ResponseEntity<UmsResource> getItem(@PathVariable Long id) {
         UmsResource umsResource = resourceService.getById(id);
-        return R.success(umsResource);
+        return ResponseEntity.success(umsResource);
     }
 
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public R delete(@PathVariable Long id) {
+    public ResponseEntity delete(@PathVariable Long id) {
         boolean success = resourceService.delete(id);
         dynamicSecurityMetadataSource.clearDataSource();
         if (success) {
-            return R.success(null);
+            return ResponseEntity.success(null);
         } else {
-            return R.failed();
+            return ResponseEntity.failed();
         }
     }
 
     @ApiOperation("分页模糊查询后台资源")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public R<CommonPage<UmsResource>> list(@RequestParam(required = false) Long categoryId,
-                                                      @RequestParam(required = false) String nameKeyword,
-                                                      @RequestParam(required = false) String urlKeyword,
-                                                      @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                                      @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+    public ResponseEntity<CommonPage<UmsResource>> list(@RequestParam(required = false) Long categoryId,
+                                                        @RequestParam(required = false) String nameKeyword,
+                                                        @RequestParam(required = false) String urlKeyword,
+                                                        @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                                        @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         Page<UmsResource> resourceList = resourceService.list(categoryId,nameKeyword, urlKeyword, pageSize, pageNum);
-        return R.success(CommonPage.restPage(resourceList));
+        return ResponseEntity.success(CommonPage.restPage(resourceList));
     }
 
     @ApiOperation("查询所有后台资源")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
-    public R<List<UmsResource>> listAll() {
+    public ResponseEntity<List<UmsResource>> listAll() {
         List<UmsResource> resourceList = resourceService.list();
-        return R.success(resourceList);
+        return ResponseEntity.success(resourceList);
     }
 }

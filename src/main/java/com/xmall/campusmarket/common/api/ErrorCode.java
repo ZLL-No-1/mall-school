@@ -7,7 +7,7 @@ package com.xmall.campusmarket.common.api;
  * @author: zl
  * @date: 2020-10-26
  */
-public interface IErrorCode {
+public interface ErrorCode {
 
     Integer getCode();
 
